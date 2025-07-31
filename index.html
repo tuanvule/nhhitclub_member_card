@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Thành viên CLB</title>
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <h1>🌟 Danh sách thành viên CLB 🌟</h1>
+
+  <div class="members">
+    <!-- Mỗi người thêm 1 dòng embed như dưới -->
+    <div class="member-card" data-src="pages/tuanvu.html">
+        <iframe src="cards/tuanvu.html" scrolling="no"></iframe>
+    </div>
+    <!-- Các thành viên khác thêm iframe của họ ở đây -->
+  </div>
+
+  <!-- Khung modal ẩn, chứa iframe phóng to -->
+    <div class="modal hidden">
+        <div id="modal-content">
+            <button id="close-modal">✖</button>
+            <iframe id="modal-iframe" src=""></iframe>
+        </div>
+    </div>
+
+
+
+    <script>
+        const modal = document.querySelector('.modal');
+        const modalIframe = document.getElementById('modal-iframe');
+        const closeBtn = document.getElementById('close-modal');
+
+        // Bắt sự kiện click từ div bọc ngoài iframe
+        document.querySelectorAll('.member-card').forEach(card => {
+            card.addEventListener('click', () => {
+            const src = card.getAttribute('data-src');
+            modal.classList.remove('hidden');
+            modalIframe.src = src;
+            });
+        });
+
+        // Đóng modal
+        closeBtn.addEventListener('click', () => {
+            modal.classList.add('hidden');
+            modalIframe.src = '';
+        });
+    </script>
+
+</body>
+</html>
